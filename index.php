@@ -45,4 +45,19 @@ $transliteration = [
     'х'=>'h', 'ц'=>'c', 'ч'=>'ch', 'ш'=>'sh', 'щ'=>'sh\'', 'ъ'=>'', 'ы'=>'i', 'ь'=>'\'', 'э'=>'e', 'ю'=>'yu', 'я'=>'ya',
 ];
 
+foreach ($transliteration as $item => $value) {
+    $transliteration[mb_strtoupper($item)] = mb_strtoupper($value);
+}
 
+
+
+function string_transliteration($str, $array){
+    foreach ($array as $item => $value) {
+        for ($i = 0; $i < mb_strlen($str) * 2; $i++) {
+
+        }
+    }
+
+}
+
+echo string_transliteration('Привет', $transliteration).'<br>';
