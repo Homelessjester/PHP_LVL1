@@ -46,18 +46,21 @@ $transliteration = [
 ];
 
 foreach ($transliteration as $item => $value) {
-    $transliteration[mb_strtoupper($item)] = mb_strtoupper($value);
+    $transliteration[mb_convert_case($item, MB_CASE_UPPER, 'UTF-8')] =
+        mb_convert_case($value, MB_CASE_UPPER, 'UTF-8');
 }
 
-
-
 function string_transliteration($str, $array){
-    foreach ($array as $item => $value) {
-        for ($i = 0; $i < mb_strlen($str) * 2; $i++) {
-
+    $str_array = [];
+    for ($i = 0; $i < strlen($str); $i += 2) {
+        $str_array[$i/2] = $str[$i] . $str[$i + 1];
+    }
+    for ($i = 0; $i < strlen($str); $i++){
+        foreach ($array as $item => $value) {
+            if ($str_array[$i] === $item) $str_array[$i] = $value;
         }
     }
-
+    return implode($str_array);
 }
 
 echo string_transliteration('Привет', $transliteration).'<br>';
