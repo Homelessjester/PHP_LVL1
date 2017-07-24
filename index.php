@@ -1,5 +1,6 @@
 <?php
-//TODO раскомментировать файл
+//TODO: раскомментировать файл
+//TODO: добавить PHPDoc к функциям
 //Задание №1
 /*const EX1 = 100;
 $i = 2;
@@ -23,7 +24,7 @@ do {
     }
 } while ($i <= 9);*/
 
-//Задание №3
+//Задание №3, №8
 /*$country = [
     'Республика Крым' => [
         'Феодосия', 'Судак', 'Ялта', 'Симферополь', 'Керчь', 'Алушта', 'Евпатория',
@@ -36,10 +37,19 @@ do {
 foreach ($country as $item => $value) {
     echo '<b>' . $item . '</b><br>';
     echo implode(', ', $value) . '<br>';
+}
+
+foreach ($country as $item => $value) {
+    echo '<b>' . $item . '</b><br>';
+    foreach ($value as $subitem => $city) {
+        if (strstr($city, 'К')) {
+            echo $city . '<br>';
+        }
+    }
 }*/
 
 //Задание №4
-$transliteration = [
+/*$transliteration = [
     'a'=>'a', 'б'=>'b', 'в'=>'v', 'г'=>'g', 'д'=>'d', 'е'=>'e', 'ё'=>'yo', 'ж'=>'zh', 'з'=>'z', 'и'=>'i', 'й'=>'yi',
     'к'=>'k', 'л'=>'l', 'м'=>'m', 'н'=>'n', 'о'=>'o', 'п'=>'p', 'р'=>'r', 'с'=>'s', 'т'=>'t', 'у'=>'u', 'ф'=>'f',
     'х'=>'h', 'ц'=>'c', 'ч'=>'ch', 'ш'=>'sh', 'щ'=>'sh\'', 'ъ'=>'', 'ы'=>'i', 'ь'=>'\'', 'э'=>'e', 'ю'=>'yu', 'я'=>'ya',
@@ -63,4 +73,18 @@ function string_transliteration($str, $array){
     return implode($str_array);
 }
 
-echo string_transliteration('Привет', $transliteration).'<br>';
+echo string_transliteration('Привет', $transliteration).'<br>';*/
+
+//Задание №5
+/*function replace_space_to_subversion ($str) {
+    $str = str_ireplace(' ', '_', $str);
+    return $str;
+}
+
+echo replace_space_to_subversion('Hello, my beautiful world!');*/
+
+//Задание №7
+//for ($i=0; $i < 10; print($i++.'<br>')) {}
+
+
+

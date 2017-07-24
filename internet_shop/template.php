@@ -1,7 +1,10 @@
 <?php
-$h1 = 'Hi to all!';
-$title = 'My first PHP page';
-$current_year = date("Y");
+include_once './main.php';
+$menu = ['Главная',
+    'Категории' => [
+        'Одежда',
+        'Обувь'],
+    'Контакты'];
 ?>
 <!doctype html>
 <html lang="en">
@@ -10,12 +13,17 @@ $current_year = date("Y");
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./styles/compiled/style.css">
     <title><?= $title ?></title>
 </head>
 <body>
 
 <header>
-    <!-- Nothing to do here -->
+    <nav>
+        <menu class="navigation">
+            <?= create_menu($menu); ?>
+        </menu>
+    </nav>
 </header>
 
 <main>
