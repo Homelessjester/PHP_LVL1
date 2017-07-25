@@ -3,6 +3,10 @@ $h1 = 'Hi to all!';
 $title = 'My first PHP page';
 $current_year = date("Y");
 
+/**
+ * @param $array
+ * @return bool|Error
+ */
 function create_menu ($array){
     if (!is_array($array)) return new Error('Value is not an array');
 
