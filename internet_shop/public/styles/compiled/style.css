@@ -3,10 +3,10 @@
   grid-auto-flow: column dense;
   list-style: none;
   background-color: #3a3a3a;
-  border-top: solid 3px #fff;
-  border-bottom: solid 3px #fff;
+  border-top: solid 3px white;
+  border-bottom: solid 3px white;
   box-shadow: 0 -2px 3px -1px black;
-  color: #fff;
+  color: white;
 }
 
 .navigation li {
@@ -16,20 +16,17 @@
   height: 4rem;
 }
 
-.navigation li:first-child {
-  border-radius: 5px 0 0 5px;
-}
-
 .navigation li:hover {
-  background-color: #222;
+  background-color: #222222;
 }
 
 .navigation li:hover > ul {
-  display: block;
+  display: grid;
+  grid-auto-flow: column dense;
   position: absolute;
   z-index: 1;
-  background-color: #222;
-  border: solid 3px #fff;
+  background-color: #3a3a3a;
+  border: solid 3px white;
   border-top: 0;
   border-radius: 0 0 8px 8px;
   box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.25);

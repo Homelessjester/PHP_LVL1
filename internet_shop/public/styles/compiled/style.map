@@ -2,8 +2,7 @@
 	"version": 3,
 	"file": "../sass/style.css",
 	"sources": [
-		"../sass/style.sass"
-	],
+		"../sass/style.sass"	],
 	"sourcesContent": [
 		"* {\n  padding: 0;\n  margin: 0; }\n\n.navigation {\n  list-style: none;\n  background-color: rgb(58, 58, 58);\n  border-top: solid 3px #fff;\n  border-bottom: solid 3px #fff;\n  box-shadow: 0px -2px 3px -1px rgba(0, 0, 0, 1);\n  li {\n    display: flex;\n    &:first-child {\n      border-radius: 5px 0 0 5px; }\n    &:hover {\n      background-color: #222;\n      > ul {\n        display: block;\n        background-color: #222;\n        border: solid 3px #fff;\n        border-top: 0;\n        border-radius: 0 0 8px 8px;\n        box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.25); } }\n    a {\n      display: block;\n      padding: 0 20px;\n      text-decoration: none;\n      line-height: 40px;\n      color: #fff;\n      li {\n        &:hover {\n          background-color: #000; }\n        li {\n          a {\n            &:hover {\n              background-color: #000; } } } } } }\n\n  ul {\n    display: none;\n    list-style: none;\n    margin-left: -3px;\n    overflow: hidden;\n    li {\n      &:last-child {\n        a {\n          border-radius: 0 0 5px 5px;\n          &:hover {\n            border-radius: 0 0 5px 5px; } } } } } }\n"
 	],
