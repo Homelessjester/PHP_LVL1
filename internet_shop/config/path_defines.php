@@ -27,3 +27,9 @@ if (!defined('UPLOAD_DIR')) {
 if (!defined('TEMPLATE_DIR')) {
     define('TEMPLATE_DIR', ROOT_DIR . '/templates/');
 }
+
+if (!defined('STYLE_DIR')) {
+    define('STYLE_DIR', PUBLIC_DIR . 'styles/compiled/');
+}
+
+

@@ -46,6 +46,10 @@
   overflow: hidden;
 }
 
+.navigation ul li {
+  margin: .5em;
+}
+
 .navigation ul li:last-child a {
   border-radius: 0 0 5px 5px;
 }
@@ -54,7 +58,39 @@
   border-radius: 0 0 5px 5px;
 }
 
+/*.upload_form
+  fieldset
+    input
+      &::-webkit-file-upload-button*/
+.main_container {
+  display: grid;
+  grid-template-areas: "header header" "aside main" "footer footer";
+  justify-content: space-between;
+}
+
+.main_container header {
+  grid-area: header;
+}
+
+.main_container aside {
+  grid-area: aside;
+  background-color: #fee1ff;
+}
+
+.main_container main {
+  grid-area: main;
+}
+
+.main_container footer {
+  grid-area: footer;
+  background-color: #daffe3;
+}
+
 * {
   padding: 0;
   margin: 0;
+}
+
+body {
+  background: #fff8dd;
 }

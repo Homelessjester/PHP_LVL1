@@ -12,23 +12,21 @@ require './../engine/main.php';
     <link rel="stylesheet" href="../public/styles/compiled/style.css">
     <title><?= $title ?></title>
 </head>
-<body>
+<body class="main_container">
 
 <header>
-    <nav>
-        <menu class="navigation">
-            <?= create_menu(get_array_for_menu(), get_transliteration_array()); ?>
-        </menu>
-    </nav>
+    <menu class="navigation">
+        <?= create_menu(get_array_for_menu(), get_transliteration_array()); ?>
+    </menu>
 </header>
-
-<main>
-    <h1><?= $h1 ?></h1>
-</main>
 
 <aside>
     <!-- Nothing to do here -->
 </aside>
+
+<main>
+    <h1><?= $h1 ?></h1>
+</main>
 
 <footer>
     <span>
