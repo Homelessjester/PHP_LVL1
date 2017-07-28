@@ -58,10 +58,29 @@
   border-radius: 0 0 5px 5px;
 }
 
-/*.upload_form
-  fieldset
-    input
-      &::-webkit-file-upload-button*/
+.gallery {
+  width: 500px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.gallery_image {
+  width: 100%;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+}
+
+.button-group .button {
+  width: 50px;
+  height: 30px;
+  display: inline-block;
+  font-size: 35px;
+  line-height: .8;
+}
+
 .main_container {
   display: grid;
   grid-template-areas: "header header" "aside main" "footer footer";

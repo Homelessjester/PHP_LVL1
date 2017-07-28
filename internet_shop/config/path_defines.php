@@ -21,7 +21,7 @@ if (!defined('DATA_DIR')) {
 }
 
 if (!defined('UPLOAD_DIR')) {
-    define('UPLOAD_DIR', DATA_DIR . '/upload/');
+    define('UPLOAD_DIR', DATA_DIR . 'upload/');
 }
 
 if (!defined('TEMPLATE_DIR')) {
