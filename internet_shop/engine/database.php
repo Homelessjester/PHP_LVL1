@@ -22,7 +22,7 @@ function db_connect($host, $user, $password, $database,
                     "\nТекст ошибки error: " . mysqli_connect_error() . PHP_EOL);
     }
 
-    echo "Соединение с MySQL установлено!" . PHP_EOL;
+    mysqli_set_charset($link, 'utf-8');
     return $link;
 }
 
@@ -38,10 +38,21 @@ function db_close($link){
     return true;
 }
 
-$my_link = db_connect('localhost', 'root', '', 'geekshop');
+function add_to_db($array, $link){
 
-var_dump($my_link);
+    foreach ($array as $images){
+        $sql = "SELECT `path` FROM `images` WHERE `path` = '" . $images['path'] . "';";
+        $result = mysqli_query($link, $sql);
+        if (!mysqli_fetch_lengths($result)) {
+            $sql = "INSERT INTO `images` 
+                    (`path`, `thumb_path`, `size`)
+                    VALUES ('{$images['path']}', '{$images['thumb_path']}', '{$images['size']}')";
+            mysqli_query($link, $sql);
+        };
+    }
+    $sql = "SELECT * FROM `images`";
+    return mysqli_fetch_all(mysqli_query($link, $sql), MYSQLI_ASSOC);
+}
 
-db_close($my_link);
 
 
