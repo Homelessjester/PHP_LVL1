@@ -9,7 +9,7 @@ require './../engine/main.php';
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../public/styles/compiled/style.css">
+    <link rel="stylesheet" href="styles/compiled/style.css">
     <title><?= $title ?></title>
 </head>
 <body class="main_container">
