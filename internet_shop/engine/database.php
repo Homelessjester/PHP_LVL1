@@ -38,19 +38,27 @@ function db_close($link){
     return true;
 }
 
+/**
+ * Проверяет и добавляет в базу при необходимости сведения о графическом файле
+ * @param $array
+ * @param $link
+ * @return array|null
+ */
 function add_to_db($array, $link){
 
     foreach ($array as $images){
         $sql = "SELECT `path` FROM `images` WHERE `path` = '" . $images['path'] . "';";
         $result = mysqli_query($link, $sql);
-        if (!mysqli_fetch_lengths($result)) {
-            $sql = "INSERT INTO `images` 
+        if ((count(mysqli_fetch_all($result, MYSQLI_ASSOC))) == 0) {
+            $sql = "INSERT INTO `images`
                     (`path`, `thumb_path`, `size`)
                     VALUES ('{$images['path']}', '{$images['thumb_path']}', '{$images['size']}')";
             mysqli_query($link, $sql);
-        };
+        } else {
+            continue;
+        }
     }
-    $sql = "SELECT * FROM `images`";
+    $sql = "SELECT * FROM `images` ORDER BY `path` ASC;";
     return mysqli_fetch_all(mysqli_query($link, $sql), MYSQLI_ASSOC);
 }
 

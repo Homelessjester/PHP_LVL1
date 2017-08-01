@@ -5,8 +5,14 @@ require_once ENGINE_DIR . 'resize.php';
 require_once ENGINE_DIR . 'gallery.php';
 require_once ENGINE_DIR . 'database.php';
 
+//TODO сделать страницы для отдельных фото
 $my_link = db_connect('localhost', 'root', '', 'geekshop');
 
+$images = get_images($images_dir);
+
+var_dump($images);
+
+db_close($my_link);
 ?>
 <!doctype html>
 <html lang="en">
@@ -32,11 +38,10 @@ $my_link = db_connect('localhost', 'root', '', 'geekshop');
 <main class="gallery" id="gallery">
     <pre>
         <?php
+        //TODO переделать функции ниже, что-бы они получали массив с изображениями из БД
         /*create_thumb(get_images($images_dir), $images_dir);
         echo generate_gallery(get_images($images_dir));*/
-        $images = get_images($images_dir);
 
-        var_dump(add_to_db($images, $my_link));
         ?>
     </pre>
 
@@ -49,6 +54,3 @@ $my_link = db_connect('localhost', 'root', '', 'geekshop');
 
 </body>
 </html>
-<?php
-db_close($my_link);
-?>

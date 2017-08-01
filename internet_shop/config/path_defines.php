@@ -32,4 +32,15 @@ if (!defined('STYLE_DIR')) {
     define('STYLE_DIR', PUBLIC_DIR . 'styles/compiled/');
 }
 
+if (!defined('THUMB_DIR')) {
+    define('THUMB_DIR', UPLOAD_DIR . 'thumb/');
+}
+
+if (!defined('PATH')) {
+    define('PATH', '../data/upload/images/');
+}
+
+if (!defined('THUMB_PATH')) {
+    define('THUMB_PATH', '../data/upload/thumb/');
+}
 
