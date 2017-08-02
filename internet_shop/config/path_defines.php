@@ -36,6 +36,8 @@ if (!defined('THUMB_DIR')) {
     define('THUMB_DIR', UPLOAD_DIR . 'thumb/');
 }
 
+
+//Константы для БД
 if (!defined('PATH')) {
     define('PATH', '../data/upload/images/');
 }

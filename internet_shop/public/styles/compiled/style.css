@@ -59,13 +59,9 @@
 }
 
 .gallery {
-  width: 500px;
-  position: relative;
-  margin: 0 auto;
-}
-
-.gallery_image {
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .button-group {

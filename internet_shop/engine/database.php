@@ -42,12 +42,15 @@ function db_close($link){
  * Проверяет и добавляет в базу при необходимости сведения о графическом файле
  * @param $array
  * @param $link
- * @return array|null
+ * @return bool
  */
 function add_to_db($array, $link){
 
     foreach ($array as $images){
         $sql = "SELECT `path` FROM `images` WHERE `path` = '" . $images['path'] . "';";
+        if (!checking_connection($link, $sql)) {
+            return NULL;
+        }
         $result = mysqli_query($link, $sql);
         if ((count(mysqli_fetch_all($result, MYSQLI_ASSOC))) == 0) {
             $sql = "INSERT INTO `images`
@@ -58,9 +61,38 @@ function add_to_db($array, $link){
             continue;
         }
     }
-    $sql = "SELECT * FROM `images` ORDER BY `path` ASC;";
+    return true;
+}
+
+/**
+ * Выборка данных из базы
+ * @param $link
+ * @return array|null
+ */
+function get_from_db($link){
+    $sql = "SELECT * FROM `images` ORDER BY `views` DESC";
+    if (!checking_connection($link, $sql)) {
+        return NULL;
+    }
     return mysqli_fetch_all(mysqli_query($link, $sql), MYSQLI_ASSOC);
 }
+
+
+/**
+ * Проверка соединения с БД
+ * @param $link
+ * @param $sql
+ * @return bool
+ */
+function checking_connection($link, $sql){
+    if (mysqli_connect_errno() || !mysqli_query($link, $sql)) {
+        printf("Connect failed: %s\n", mysqli_connect_error());
+        printf("Errorcode: %d\n", mysqli_errno($link));
+        return false;
+    }
+    return true;
+}
+
 
 
 

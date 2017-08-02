@@ -3920,7 +3920,7 @@
     </column>
     <column id="862" parent="81" name="views">
       <Position>4</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>smallint(6)|0</DataType>
       <DefaultExpression>&apos;NULL&apos;</DefaultExpression>
     </column>
     <column id="863" parent="81" name="thumb_path">

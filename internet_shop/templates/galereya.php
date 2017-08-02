@@ -5,14 +5,24 @@ require_once ENGINE_DIR . 'resize.php';
 require_once ENGINE_DIR . 'gallery.php';
 require_once ENGINE_DIR . 'database.php';
 
-//TODO сделать страницы для отдельных фото
+
+move_uploaded_file($_FILES['up_file']['tmp_name'], $images_dir . $_FILES['up_file']['name']);
+
 $my_link = db_connect('localhost', 'root', '', 'geekshop');
+
+if (!$my_link){
+    die('Ошибка соединения: ' . mysqli_connect_errno());
+}
 
 $images = get_images($images_dir);
 
-var_dump($images);
+if (is_null($images)){
+    return 'Images not exists';
+} else {
+    add_to_db($images, $my_link);
+    create_thumb(get_from_db($my_link));
+}
 
-db_close($my_link);
 ?>
 <!doctype html>
 <html lang="en">
@@ -36,15 +46,11 @@ db_close($my_link);
     </fieldset>
 </form>
 <main class="gallery" id="gallery">
-    <pre>
         <?php
-        //TODO переделать функции ниже, что-бы они получали массив с изображениями из БД
-        /*create_thumb(get_images($images_dir), $images_dir);
-        echo generate_gallery(get_images($images_dir));*/
+
+        echo generate_gallery(get_from_db($my_link));
 
         ?>
-    </pre>
-
 </main>
 
 <div class="button-group">
@@ -54,3 +60,6 @@ db_close($my_link);
 
 </body>
 </html>
+<?php
+db_close($my_link);
+?>

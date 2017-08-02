@@ -2,8 +2,6 @@
 $images_dir = UPLOAD_DIR . 'images';
 $images_dir = str_ireplace('\\', '/', $images_dir);
 
-move_uploaded_file($_FILES['up_file']['tmp_name'], $images_dir . $_FILES['up_file']['name']);
-
 /**
  * Выборка файлов изображений
  * Дикая вложенность
@@ -43,14 +41,13 @@ function get_images($images_dir){
 /**
  * Создание уменьшеных копий изображений
  * @param $images
- * @param $dir
  */
-function create_thumb($images, $dir) {
+function create_thumb($images) {
     foreach ($images as $image) {
-        if (!file_exists(THUMB_DIR . $image)) {
+        if (!file_exists($image['thumb_path'])) {
             create_thumbnail(
-                $dir . '/' . $image,
-                THUMB_DIR . '/' . $image,
+                $image['path'],
+                $image['thumb_path'],
                 400,
                 300
             );
@@ -66,7 +63,10 @@ function create_thumb($images, $dir) {
 function generate_gallery($array){
     $result = '';
     foreach ($array as $image){
-        $result .= "<a href='../data/upload/images/$image' target='_blank'><img src='../data/upload/thumb/$image' alt='Image' class='gallery_image' onerror=\"this.src = '../public/img/file-not-found/404.jpg'\"></a>";
+        $result .= "<a href='../templates/single_image.php?id={$image['id']}&path={$image['path']}&views={$image['views']}' target='_blank'>
+                <img src='{$image['thumb_path']}' alt='Image' class='gallery_image' 
+                onerror=\"this.src = '../public/img/file-not-found/404.jpg'\">
+                </a><b class='views'>Число просмотров: {$image['views']}</b>";
     }
     return $result;
 }
