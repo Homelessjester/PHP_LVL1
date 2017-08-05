@@ -11,50 +11,29 @@ $views = (int)$_GET['views'];
 
 $my_link = db_connect('localhost', 'root', '', 'geekshop');
 
-if (!$my_link){
-    die('Ошибка соединения: ' . mysqli_connect_errno());
+$sql = "UPDATE `images` SET `views` = `views` + 1 WHERE `id` = " . $id . ";";
+execute_query($sql, $my_link);
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST'
+    && isset($_POST['comment'])
+    && !empty(trim($_POST['comment']))) {
+
+    $comment = escapeString(trim($_POST['comment']), $my_link);
+
+    $comment = htmlspecialchars($comment);
+
+    $sql = "INSERT INTO `comments` (`comment`, `image_id`) VALUES ('{$comment}', '{$id}');";
+    execute_query($sql, $my_link);
 }
 
-$sql = "UPDATE `images` SET `views` = " . ++$views . " WHERE `id` = " . $id . ";";
-if (!checking_connection($my_link, $sql)){
-    die('Ошибка: ' . mysqli_error($my_link));
-} else {
-    mysqli_query($my_link, $sql);
+$comments = [];
+
+$sql = "SELECT `comment` FROM `comments` WHERE `image_id` = '{$id}'";
+$res = get_assoc_result($sql, $my_link);
+if(count($res) > 0) {
+    $comments = $res;
 }
 
-?>
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Image</title>
-    <link rel="stylesheet" href="../public/styles/compiled/style.css">
-</head>
-<body>
-<header>
+include "single_image.phtml";
 
-</header>
-
-<aside>
-
-</aside>
-
-<main class="gallery">
-    <img src="<?=$path;?>" alt="Image">
-</main>
-
-<footer>
-    <span>
-        Copyright &copy; Denis Lomakin
-        <?= $current_year ?>
-    </span>
-</footer>
-
-</body>
-</html>
-<?php
 db_close($my_link);
-?>

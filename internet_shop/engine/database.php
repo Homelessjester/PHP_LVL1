@@ -71,10 +71,8 @@ function add_to_db($array, $link){
  */
 function get_from_db($link){
     $sql = "SELECT * FROM `images` ORDER BY `views` DESC";
-    if (!checking_connection($link, $sql)) {
-        return NULL;
-    }
-    return mysqli_fetch_all(mysqli_query($link, $sql), MYSQLI_ASSOC);
+    $result = get_assoc_result($sql, $link);
+    return $result;
 }
 
 
@@ -84,13 +82,64 @@ function get_from_db($link){
  * @param $sql
  * @return bool
  */
-function checking_connection($link, $sql){
-    if (mysqli_connect_errno() || !mysqli_query($link, $sql)) {
+function checking_connection($link){
+    if (mysqli_connect_errno()) {
         printf("Connect failed: %s\n", mysqli_connect_error());
         printf("Errorcode: %d\n", mysqli_errno($link));
         return false;
     }
     return true;
+}
+
+/**
+ * Выполнить экранирование строки
+ * @param $str
+ * @param null $db
+ * @return string
+ */
+function escapeString($str, $db = null) {
+
+    $res = mysqli_real_escape_string($db, $str);
+
+    mysqli_close($db);
+
+    return $res;
+}
+
+/**
+ * Отправка запроса в базу
+ * @param $sql
+ * @param $link
+ * @return bool|mysqli_result|string
+ */
+function execute_query($sql, $link){
+    if (!checking_connection($link, $sql)){
+        $result = ('Ошибка: ' . mysqli_error($link));
+    } else {
+        $result = mysqli_query($link, $sql);
+    }
+    return $result;
+}
+
+/**
+ * Получить результат в виде ассоциативного массива
+ * @param $sql
+ * @param $link
+ * @return array|string
+ */
+function get_assoc_result($sql, $link){
+
+    $result = execute_query($sql, $link);
+    $array_result = [];
+
+    if (is_string($result)){
+        return $result;
+    }
+
+    while($row = mysqli_fetch_assoc($result)) {
+        $array_result[] = $row;
+    }
+    return $array_result;
 }
 
 

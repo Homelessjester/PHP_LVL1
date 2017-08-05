@@ -57,11 +57,11 @@ function create_menu($array, $transliteration_array){
 
     foreach ($array as $item => $value){
         if (is_array($value)) {
-            echo '<li>' . $item . '<ul>';
+            echo '<li><a href="../templates/'  . string_transliteration($item, $transliteration_array) . '.php" title="' . $item . '">' . $item . '</a><ul>';
             create_menu($value, $transliteration_array);
             echo '</ul></li>';
         } else {
-            echo '<li><a href="./' . string_transliteration($value, $transliteration_array) . '.php" title="' . $value . '">' . $value . '</a></li>';
+            echo '<li><a href="../templates/'  . string_transliteration($value, $transliteration_array) . '.php" title="' . $value . '">' . $value . '</a></li>';
         }
     }
     create_templates($array);
@@ -77,7 +77,8 @@ function get_array_for_menu(){
             'Одежда',
             'Обувь'],
         'Галерея',
-        'Контакты'];
+        'Контакты',
+        'Калькулятор'];
 }
 
 /**
