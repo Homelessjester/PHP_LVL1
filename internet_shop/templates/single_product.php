@@ -21,3 +21,5 @@ $sql = "UPDATE `images` SET `views` = `views` + 1 WHERE `id` = " . $id . ";";
 execute_query($sql, $my_link);
 
 include "single_product.phtml";
+
+db_close($my_link);

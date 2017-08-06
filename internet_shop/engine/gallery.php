@@ -1,5 +1,5 @@
 <?php
-$images_dir = UPLOAD_DIR . 'images';
+$images_dir = UPLOAD_DIR . 'images/';
 $images_dir = str_ireplace('\\', '/', $images_dir);
 
 /**
@@ -16,11 +16,11 @@ function get_images($images_dir){
             if ($dh = opendir($images_dir)) {
                 while (false !== ($file = readdir($dh))) {
                     if ((!is_dir($file)) && ($file != "." && $file != "..")) {
-                        if (!empty(getimagesize($images_dir . '/' . $file))) {
+                        if (!empty(getimagesize($images_dir . $file))) {
                             array_push($images, [
                                 'path' => PATH . $file,
                                 'thumb_path' => THUMB_PATH . $file,
-                                'size' => filesize($images_dir . '/' . $file)
+                                'size' => filesize($images_dir . $file)
                             ]);
                         }
                     }

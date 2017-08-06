@@ -48,7 +48,7 @@ function add_to_db($array, $link){
 
     foreach ($array as $images){
         $sql = "SELECT `path` FROM `images` WHERE `path` = '" . $images['path'] . "';";
-        if (!checking_connection($link, $sql)) {
+        if (!checking_connection($link)) {
             return NULL;
         }
         $result = mysqli_query($link, $sql);
@@ -113,7 +113,7 @@ function escapeString($str, $db = null) {
  * @return bool|mysqli_result|string
  */
 function execute_query($sql, $link){
-    if (!checking_connection($link, $sql)){
+    if (!checking_connection($link)){
         $result = ('Ошибка: ' . mysqli_error($link));
     } else {
         $result = mysqli_query($link, $sql);

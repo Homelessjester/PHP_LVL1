@@ -5,8 +5,7 @@ require_once ENGINE_DIR . 'resize.php';
 require_once ENGINE_DIR . 'gallery.php';
 require_once ENGINE_DIR . 'database.php';
 
-
-move_uploaded_file($_FILES['up_file']['tmp_name'], $images_dir . $_FILES['up_file']['name']);
+move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $images_dir . $_FILES['uploaded_file']['name']);
 
 $my_link = db_connect('localhost', 'root', '', 'geekshop');
 
@@ -41,7 +40,7 @@ if (is_null($images)){
 <form action="" class="upload_form" id="upload_form" method="post" enctype="multipart/form-data">
     <fieldset>
         <legend>Загрузить изображения в галерею</legend>
-        <input type="file" accept="image/*" multiple name="uploaded_file">
+        <input type="file" accept="image/*" name="uploaded_file">
         <input type="submit" value="Загрузить">
     </fieldset>
 </form>
