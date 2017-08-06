@@ -10,21 +10,23 @@
 </head>
 <body>
 <h1><?=$title?></h1>
-<?php foreach ($products as $product):?>
-    <section class="product">
-        <h2>Название: <?=$product['name'];?></h2>
-        <p>Краткая характеристика: <?=$product['short_description'];?></p>
-        <p>Цена: <?=$product['price'];?></p>
-        <img src="<?=$product['thumb_path'];?>" alt="Image">
-        <?php
-        $get_params = '';
-        foreach ($product as $item=>$value){
-            $get_params .= $item . '=' . $value . '&';
-        }
-        ?>
-        <a href="single_product.php?<?=rtrim($get_params, '&');?>">Подробнее</a>
-    </section>
-<?php endforeach;?>
+<main class="products_section">
+    <?php foreach ($products as $product):?>
 
+        <section class="product">
+            <h2>Название: <?=$product['name'];?></h2>
+            <p>Краткая характеристика: <?=$product['short_description'];?></p>
+            <p>Цена: <?=$product['price'];?></p>
+            <img src="<?=$product['thumb_path'];?>" alt="Image">
+            <?php
+            $get_params = '';
+            foreach ($product as $item=>$value){
+                $get_params .= $item . '=' . $value . '&';
+            }
+            ?>
+            <a href="single_product.php?<?=rtrim($get_params, '&');?>" class="more_button">Подробнее</a>
+        </section>
+    <?php endforeach;?>
+</main>
 </body>
 </html>

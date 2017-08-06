@@ -97,8 +97,9 @@ function create_templates($array){
         }
         if (!file_exists($file)) {
             file_put_contents($file, '<?php
-require \'./../engine/main.php\';
-require \'./../config/path_defines.php\';');
+require \'./../config/path_defines.php\';
+require ENGINE_DIR . \'main.php\';
+require ENGINE_DIR . \'database.php\';');
         }
     }
 }

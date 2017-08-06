@@ -77,6 +77,50 @@
   line-height: .8;
 }
 
+.products_section {
+  display: grid;
+  grid-auto-flow: column dense;
+  grid-auto-columns: min-content;
+  grid-auto-rows: min-content;
+  grid-gap: 20px;
+}
+
+.products_section .product img {
+  display: inline-block;
+}
+
+.more_button {
+  display: inline-block;
+  background-color: #a0bfff;
+  text-decoration: none;
+  text-transform: capitalize;
+  color: #ffefef;
+  font-size: 18px;
+  padding: 5px;
+  margin: 0 35px;
+}
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.calculator fieldset {
+  padding: 15px 10px;
+}
+
+.calculator fieldset label {
+  font-weight: 600;
+}
+
+.calculator fieldset input, .calculator fieldset select, .calculator fieldset label, .calculator fieldset button {
+  width: 100%;
+  margin: 5px;
+  font-size: 18px;
+}
+
 .main_container {
   display: grid;
   grid-template-areas: "header header" "aside main" "footer footer";
